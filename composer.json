@@ -3,6 +3,7 @@
     "description": "A simple way to add getter/setter feature by using attribute grammar",
     "type": "library",
     "require": {
+        "php": ">=8.2",
         "symfony/expression-language": "^7.0"
     },
     "require-dev": {
