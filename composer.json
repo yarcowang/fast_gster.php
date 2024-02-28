@@ -1,6 +1,5 @@
 {
     "name": "yarco/fast_gster",
-    "version": "1.0.0",
     "description": "A simple way to add getter/setter feature by using attribute grammar",
     "type": "library",
     "require": {
