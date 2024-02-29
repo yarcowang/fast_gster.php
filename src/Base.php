@@ -25,14 +25,14 @@ trait Base
                 foreach($attributes as $attribute) {
                     switch ($attribute->getName()) {
                         case Get::class:
-                            self::$__meta["get{$name}"] = function () use($property, $attribute) {
-                                return $property->getValue($this);
+                            self::$__meta["get{$name}"] = function ($that) use($property, $attribute) {
+                                return $property->getValue($that);
                             };
                             break;
                         case Set::class:
-                            self::$__meta["set{$name}"] = function ($value) use($property, $attribute) {
+                            self::$__meta["set{$name}"] = function ($that, $value) use($property, $attribute) {
                                 $attribute->newInstance()->validate($property->name, $value);
-                                $property->setValue($this, $value);
+                                $property->setValue($that, $value);
                             };
                             break;
                     }
@@ -46,6 +46,6 @@ trait Base
         }
 
         // call
-        return call_user_func_array(self::$__meta[$name], $arguments);
+        return call_user_func_array(self::$__meta[$name], [$this, ...$arguments]);
     }
 }
